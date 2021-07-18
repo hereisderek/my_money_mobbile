@@ -4,13 +4,16 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("io.realm.kotlin") version "0.4.1"
+    kotlin("plugin.serialization")
+    id("kotlin-android-extensions")
 }
 
 version = "1.0"
 
+
 kotlin {
     android()
-
     val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
         if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
             ::iosArm64
@@ -28,30 +31,48 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("io.realm.kotlin:library:_")
+                implementation(Ktor.client.core)
+                implementation(Ktor.client.serialization)
+                implementation("io.github.aakira:napier:_")
+                implementation(KotlinX.coroutines.core)
+                implementation(KotlinX.serialization.core)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                // implementation(Ktor.client.okHttp)
+                implementation(Ktor.client.cio)
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
+        val iosMain by getting {
+            dependencies {
+                implementation(Ktor.client.ios)
+            }
+        }
         val iosTest by getting
     }
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 30
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk = 21
+        targetSdk = 30
     }
 }
