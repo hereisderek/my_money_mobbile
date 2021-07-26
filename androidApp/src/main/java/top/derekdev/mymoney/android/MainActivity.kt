@@ -14,9 +14,11 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import top.derekdev.mymoney.android.ui.MyMoneyApp
 import top.derekdev.mymoney.android.ui.theme.MyMoneyTheme
 
+/*
 fun greet(): String {
     return Greeting().greeting()
 }
+*/
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         setContent {
             MyMoneyTheme {
                 ProvideWindowInsets(consumeWindowInsets = true) {
-                    MyMoneyApp()
+                    Text(text = "abs")
+                    // MyMoneyApp()
                 }
             }
         }
