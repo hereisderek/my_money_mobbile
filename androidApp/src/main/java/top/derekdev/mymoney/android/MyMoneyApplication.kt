@@ -9,6 +9,6 @@ import android.app.Application
  *
  */
 
-class MyApp : Application() {
+class MyMoneyApplication : Application() {
 
 }

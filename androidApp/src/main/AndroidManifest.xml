@@ -6,7 +6,7 @@
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".MyApp">
+        android:name=".MyMoneyApplication">
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -6,7 +6,7 @@ plugins {
     id("com.android.library")
     id("io.realm.kotlin") version "0.4.1"
     kotlin("plugin.serialization")
-    id("kotlin-android-extensions")
+    id("kotlin-parcelize")
 }
 
 version = "1.0"
