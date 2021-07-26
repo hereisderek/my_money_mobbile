@@ -12,6 +12,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
         classpath("com.android.tools.build:gradle:7.1.0-alpha04")
+        // classpath("com.android.tools.build:gradle:7.0.0-rc01")
     }
 }
 

@@ -24,25 +24,16 @@ dependencies {
     implementation(Google.accompanist.insets)
 
 
-    val lifecycle_version = "2.4.0-alpha02"
     implementation(AndroidX.lifecycle.runtime)
     implementation(AndroidX.lifecycle.common)
     implementation(AndroidX.lifecycle.runtimeKtx)
-
     // kapt("androidx.lifecycle:lifecycle-compiler:2.4.0-alpha02")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha02")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
-
-    // alternately - if using Java8, use the following instead of lifecycle-compiler
-    implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
-
-    // optional - helpers for implementing LifecycleOwner in a Service
-    implementation("androidx.lifecycle:lifecycle-service:$lifecycle_version")
-
-    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
-    implementation("androidx.lifecycle:lifecycle-process:$lifecycle_version")
+    implementation(AndroidX.lifecycle.commonJava8)
+    implementation(AndroidX.lifecycle.viewModelKtx)
+    implementation(AndroidX.lifecycle.liveDataKtx)
+    implementation(AndroidX.lifecycle.viewModelSavedState)
+    implementation(AndroidX.lifecycle.service)
+    implementation(AndroidX.lifecycle.process)
 
     // UI Tests
     androidTestImplementation(AndroidX.compose.ui.testJunit4)
@@ -91,5 +82,11 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/licenses/**")
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
     }
 }
