@@ -11,8 +11,9 @@ buildscript {
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
-        classpath("com.android.tools.build:gradle:7.1.0-alpha04")
-        // classpath("com.android.tools.build:gradle:7.0.0-rc01")
+        // the latest version (7.1.0-alpha04) at the time of writing has a bug that crashes the app on launch
+        classpath("com.android.tools.build:gradle:7.0.0")
+        // classpath("com.android.tools.build:gradle:7.1.0-alpha05")
     }
 }
 

@@ -51,6 +51,8 @@ kotlin {
             dependencies {
                 // implementation(Ktor.client.okHttp)
                 implementation(Ktor.client.cio)
+                implementation(AndroidX.compose.ui)
+                implementation("androidx.compose.runtime:runtime-livedata:1.0.0")
             }
         }
         val androidTest by getting {

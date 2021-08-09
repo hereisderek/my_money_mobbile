@@ -1,6 +1,7 @@
 package top.derekdev.mymoney.android
 
 import android.app.Application
+import android.content.Context
 
 
 /**
@@ -10,5 +11,8 @@ import android.app.Application
  */
 
 class MyMoneyApplication : Application() {
+    override fun getBaseContext(): Context {
+        return super.getBaseContext()
+    }
 
 }

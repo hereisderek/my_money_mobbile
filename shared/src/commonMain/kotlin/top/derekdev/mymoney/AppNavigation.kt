@@ -7,22 +7,11 @@ package top.derekdev.mymoney
  *
  */
 
-class AppNavigation {
-
-}
 
 
-
-
-
-
-
-
-expect val Navigation.label: String
-
-sealed class Navigation(val route: String, parent: Navigation? = null) {
-    private val _children = ArrayList<Navigation>()
-    val children: List<Navigation> get() = _children
+sealed class NavigationItem(val route: String, parent: NavigationItem? = null) {
+    private val _children = ArrayList<NavigationItem>()
+    val children: List<NavigationItem> get() = _children
 
 
     init {
@@ -31,13 +20,12 @@ sealed class Navigation(val route: String, parent: Navigation? = null) {
 
 
 
-    sealed class HomeNavigation(route: String, parent: Navigation? = RootNavigation) : Navigation(route, parent) {
-        object Budgets : HomeNavigation("budgets")
-        object Setting : HomeNavigation("setting")
-
+    sealed class HomeNavigationItem(route: String, parent: NavigationItem? = RootNavigationItem) : NavigationItem(route, parent) {
+        object Budgets : HomeNavigationItem("budgets")
+        object Setting : HomeNavigationItem("setting")
     }
 
     companion object {
-        object RootNavigation : Navigation("root")
+        object RootNavigationItem : NavigationItem("root")
     }
 }

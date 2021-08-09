@@ -3,6 +3,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-parcelize")
+    kotlin("kapt")
 }
 
 dependencies {
@@ -10,10 +11,11 @@ dependencies {
     implementation(Google.android.material)
     implementation(AndroidX.appCompat)
     implementation(AndroidX.constraintLayout)
+    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.fragment:fragment:1.3.6")
 
     /* compose */
     implementation(AndroidX.activity.compose)
-
     implementation(AndroidX.compose.ui)
     implementation(AndroidX.compose.ui.tooling)
     implementation(AndroidX.compose.foundation)
@@ -35,6 +37,7 @@ dependencies {
     implementation(AndroidX.lifecycle.viewModelSavedState)
     implementation(AndroidX.lifecycle.service)
     implementation(AndroidX.lifecycle.process)
+    implementation("androidx.compose.runtime:runtime-livedata:1.0.0")
 
     // UI Tests
     androidTestImplementation(AndroidX.compose.ui.testJunit4)
@@ -77,7 +80,7 @@ android {
     }
 
     composeOptions {
-        // kotlinCompilerVersion = "1.5.10"
+        kotlinCompilerVersion = "1.5.10"
         kotlinCompilerExtensionVersion = "1.0.0-rc02"
     }
 

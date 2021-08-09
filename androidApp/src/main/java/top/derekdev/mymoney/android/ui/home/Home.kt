@@ -7,9 +7,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import top.derekdev.mymoney.Navigation.Companion.RootNavigation
+import top.derekdev.mymoney.NavigationItem
+import top.derekdev.mymoney.NavigationItem.Companion.RootNavigationItem
+import top.derekdev.mymoney.res
 
 
 /**
@@ -24,36 +27,10 @@ fun Home() {
 
     Scaffold(
         bottomBar = {
-            BottomNavigation {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-                RootNavigation.children.forEach { screen ->
-                    BottomNavigationItem(
-                        icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                        selected = currentDestination?.hierarchy?.any{
-                            it.route == screen.route
-                        } ?: false,
-                        onClick = {
-                            navController.navigate(screen.route) {
-                                // Pop up to the start destination of the graph to
-                                // avoid building up a large stack of destinations
-                                // on the back stack as users select items
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                // Avoid multiple copies of the same destination when
-                                // reselecting the same item
-                                launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
-                                restoreState = true
-                            }
-                        }
-                    )
-                }
-            }
+            BottomBar(RootNavigationItem.children, navController = navController)
         },
         topBar = {
-            TopAppBar(title = {Text(text = "")}, )
+            TopAppBar(title = {Text(text = "title")}, )
         }
     ) {
         Text(text = "")
@@ -74,6 +51,50 @@ fun TextTabs() {
             }, text = {
                 Text(text = text, maxLines = 1)
             })
+        }
+    }
+}
+
+
+@Preview
+@Composable
+fun BottomBar(
+    items: List<NavigationItem> = RootNavigationItem.children,
+    navController: NavHostController = rememberNavController()
+) {
+    BottomNavigation {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+        items.forEach { screen ->
+            BottomNavigationItem(
+                label = {
+                    Text(text = screen.res.label)
+                },
+                icon = {
+                    screen.res.run {
+                        if (icon != null) Icon(icon, iconDescription)
+                    }
+
+                },
+                selected = currentDestination?.hierarchy?.any{
+                    it.route == screen.route
+                } ?: false,
+                onClick = {
+                    navController.navigate(screen.route) {
+                        // Pop up to the start destination of the graph to
+                        // avoid building up a large stack of destinations
+                        // on the back stack as users select items
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        // Avoid multiple copies of the same destination when
+                        // reselecting the same item
+                        launchSingleTop = true
+                        // Restore state when reselecting a previously selected item
+                        restoreState = true
+                    }
+                }
+            )
         }
     }
 }

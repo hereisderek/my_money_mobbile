@@ -26,20 +26,16 @@ class MainActivity : AppCompatActivity() {
 
         // This app draws behind the system bars, so we want to handle fitting system windows
         // WindowCompat.setDecorFitsSystemWindows(window, false)
-        /*
-        setContentView(
+/*        setContentView(
             TextView(this).apply {
                 text = "hi"
             }
-        )
-        */
+        )*/
         setContent {
-            MyMoneyTheme {
-                ProvideWindowInsets(consumeWindowInsets = true) {
-                    Text(text = "abs")
-                    // MyMoneyApp()
-                }
-            }
+            // ProvideWindowInsets(consumeWindowInsets = true) {
+            // }
+            MyMoneyApp()
+
         }
     }
 }

@@ -3,6 +3,7 @@ package top.derekdev.mymoney.android.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import top.derekdev.mymoney.android.ui.home.Home
+import top.derekdev.mymoney.android.ui.theme.MyMoneyTheme
 
 
 /**
@@ -14,5 +15,7 @@ import top.derekdev.mymoney.android.ui.home.Home
 @Preview
 @Composable
 fun MyMoneyApp() {
-    Home()
+    MyMoneyTheme {
+        Home()
+    }
 }

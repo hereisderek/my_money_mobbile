@@ -1,7 +1,5 @@
 package top.derekdev.mymoney.android
 
-import top.derekdev.mymoney.Navigation
-
 
 /**
  * Created by Derek Zhu on 26/7/21.
